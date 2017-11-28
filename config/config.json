@@ -1,0 +1,10 @@
+{
+  "url":"localhost",
+  "port":4444,
+
+  "mongoose": {
+    "uri":"mongodb://localhost:27017/passport-project"
+  }
+}
+
+
