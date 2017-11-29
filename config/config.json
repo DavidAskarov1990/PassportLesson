@@ -1,7 +1,9 @@
 {
   "url":"localhost",
   "port":4444,
-
+  "session": {
+    "secret": "passport 12345"
+  },
   "mongoose": {
     "uri":"mongodb://localhost:27017/passport-project"
   }
