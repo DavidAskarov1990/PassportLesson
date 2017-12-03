@@ -23,6 +23,9 @@ app.use(expressSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(express.static('./'));
+app.use('/*', express.static('index.html'));
+
 passport.serializeUser(function (user, done) {
     done(null, user.id)
 });
@@ -33,10 +36,6 @@ passport.deserializeUser(function (id, done) {
     })
 });
 
-app.get('/', function (req, res) {
-    res.send('Hello!');
-});
-
-app.listen(4444, function () {
-    console.log('Start some server port 4444')
+app.listen(config.get('port'), function () {
+    console.log('Start some server port : ', config.get('port'))
 });
