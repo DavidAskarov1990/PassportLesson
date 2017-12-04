@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const User = new mongoose.Schema({
-    name: {
+    username: {
         type: String,
         required: true
     },
@@ -17,7 +17,14 @@ const User = new mongoose.Schema({
         type: String,
         required: false,
         default: 'user'
+    },
+    password: {
+        type: String
     }
 });
+
+User.methods.validPassword = function( pwd ) {
+    return ( this.password === pwd );
+};
 
 module.exports = mongoose.model('User', User);

@@ -4,8 +4,10 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const expressSession = require('express-session');
 const passport = require('passport');
+const flash = require('connect-flash');
 
 const config = require('./config');
+require('./db');
 const User = require('./db/model').User;
 const app = express();
 
@@ -20,6 +22,7 @@ app.use(expressSession({
         maxAge: 20000
     }
 }));
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -35,6 +38,9 @@ passport.deserializeUser(function (id, done) {
         done(err, user)
     })
 });
+
+require('./strategy')(passport);
+require('./router')(app, passport);
 
 app.listen(config.get('port'), function () {
     console.log('Start some server port : ', config.get('port'))
