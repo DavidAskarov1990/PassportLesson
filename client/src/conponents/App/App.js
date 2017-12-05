@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import Home from '../Home/Home.jsx';
 import LoginFrom from '../Login/Login.jsx';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import './App.scss';
 
 class App extends Component {
@@ -10,7 +12,10 @@ class App extends Component {
     render() {
         return (
             <div>
-                <LoginFrom/>
+                <Switch>
+                    <Route exact path='/' component={ Home } />
+                    <Route exact path='/login' component={LoginFrom} />
+                </Switch>
             </div>
         )
     }
